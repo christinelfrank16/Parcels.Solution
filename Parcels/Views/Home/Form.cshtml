@@ -2,13 +2,35 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
 		<title>Parcel Form</title>
 	</head>
 	<body>
 		<h1>Enter Your Parcel Information</h1>
-		<form action="/parcel" method="post">
-			<label for="xDim">Enter the Width of the Parcel (inches)</label>
-			<input id="xDim" name="xDim" type="number">
-		</form>
+		<div class="container">
+			<form action="/parcel" method="post">
+			<div class="form-group"></div>
+					<label for="description">Enter a description of your Parcel</label>
+					<input id="description" name="description" type="text" class="form-control">
+				</div>
+				<div class="form-group"></div>
+					<label for="xDim">Enter the Width of the Parcel (inches)</label>
+					<input id="xDim" name="xDim" type="number" class="form-control">
+				</div>
+				<div class = "form-group">
+					<label for="yDim">Enter the Depth of the Parcel (inches)</label>
+					<input id="yDim" name="yDim" type="number" class="form-control">
+				</div>
+				<div class = "form-group">
+					<label for="zDim">Enter the Height of the Parcel (inches)</label>
+					<input id="zDim" name="zDim" type="number" class="form-control">
+				</div>
+				<div class = "form-group">
+					<label for="weight">Enter the Weight of the Parcel (pounds)</label>
+					<input id="weight" name="weight" type="number" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-primary">Create Parcel!</button>
+			</form>
+		</div>
 	</body>
 </html>

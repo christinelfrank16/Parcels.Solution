@@ -4,20 +4,26 @@ namespace Parcels.Models
 {
 	public class Parcel
 	{
+		private string Description { get; set; }
 		private int[] Dimensions { get; set; }
-		private long Volume { get; set; }
 		private float Weight { get; set; }
 
-		public Parcel(int x, int y, int z, float weight)
+		public Parcel(string description, int x, int y, int z, float weight)
 		{
+			Description = description;
 			Dimensions = new int[]{x,y,z};
-			Volume = x*y*z;
 			Weight = weight;
+		}
+
+		public long Volume()
+		{
+			return Dimensions[0]*Dimensions[1]*Dimensions[2];
 		}
 
 		public float CostToShip()
 		{
 			float densityCost = 1.00;
+			long volume = Volume();
 			if(Dimensions.Max() > 30 && Weight > 10)
 			{
 				densityCost = 1.35;
@@ -30,7 +36,7 @@ namespace Parcels.Models
 			{
 				densityCost = 4.00;
 			}
-			return (Weight/Volume)*densityCost;
+			return (Weight/volume)*densityCost;
 		}
 	}
 }
