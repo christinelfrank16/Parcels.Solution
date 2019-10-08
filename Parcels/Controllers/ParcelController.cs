@@ -20,11 +20,25 @@ namespace Parcels.Controllers
       return View();
     }
 
+		[HttpGet("/parcel/error")]
+    public ActionResult Error()
+    {
+      return View();
+    }
+
     [HttpPost("/parcel")]
     public ActionResult Create(string description, int xDim, int yDim, int zDim, double weight)
     {
-      Parcel myParcels = new Parcel(description, xDim, yDim, zDim, weight);
-      return RedirectToAction("Ship");
+			if(xDim <= 0 || yDim <= 0 || zDim <= 0 || weight <= 0)
+			{
+				return RedirectToAction("Error");
+			}
+			else
+			{
+				Parcel myParcels = new Parcel(description, xDim, yDim, zDim, weight);
+				return RedirectToAction("Ship");
+			}
+
     }
 
     }
