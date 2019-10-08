@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+		<title>Ship Your Parcel!</title>
+	</head>
+	<style>
+		.col-md-3 { border: 2px solid black; text-align: center}
+	</style>
+	<body>
+			<div class="container">
+				<h1>Your Parcels:</h1>
+				<br>
+				<a href="/parcel/new">Create new Parcel</a>
+				<br>
+				<h3>Summary Table</h3>
+				<div class="row"> 
+					<div class="col-md-3">
+						<p>Description:</p>
+					</div>
+					<div class="col-md-3">
+						<p>Dimensions:</p>
+					</div>
+					<div class="col-md-3">
+						<p>Cost:</p>
+					</div>
+				</div> 
+					@foreach(var parcel in Model)
+					{
+						<div class="row"> 
+							<div class="col-md-3">
+								@parcel.Description
+							</div>
+							<div class="col-md-3">
+								@parcel.Dimensions[0] x @parcel.Dimensions[1] x @parcel.Dimensions[2]
+							</div>
+							<div class="col-md-3">
+								@parcel.CostToShip()
+							</div>
+						</div> 
+					}
+			</div>
+	</body>
+</html>

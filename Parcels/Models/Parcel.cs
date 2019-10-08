@@ -1,18 +1,22 @@
 using System.Linq;
+using System.Collections.Generic;
 
+using System;
 namespace Parcels.Models
 {
 	public class Parcel
 	{
-		private string Description { get; set; }
-		private int[] Dimensions { get; set; }
-		private float Weight { get; set; }
+		public string Description { get; set; }
+		public int[] Dimensions { get; set; }
+		public double Weight { get; set; }
+		public static List<Parcel> _parcelList = new List<Parcel> {};
 
-		public Parcel(string description, int x, int y, int z, float weight)
+		public Parcel(string description, int x, int y, int z, double weight)
 		{
 			Description = description;
 			Dimensions = new int[]{x,y,z};
 			Weight = weight;
+			_parcelList.Add(this);
 		}
 
 		public long Volume()
@@ -20,23 +24,29 @@ namespace Parcels.Models
 			return Dimensions[0]*Dimensions[1]*Dimensions[2];
 		}
 
-		public float CostToShip()
+		public double CostToShip()
 		{
-			float densityCost = 1.00;
+			double densityCost = 10.00;
 			long volume = Volume();
-			if(Dimensions.Max() > 30 && Weight > 10)
+			if(Dimensions.Max() > 60 || Weight > 35)
 			{
-				densityCost = 1.35;
+				densityCost = 40.00;
 			}
 			else if(Dimensions.Max() > 48 || Weight > 25)
 			{
-				densityCost = 2.55;
+				densityCost = 20.55;
 			}
-			else if(Dimensions.Max() > 60 || Weight > 35)
+			else if(Dimensions.Max() > 30 && Weight > 10)
 			{
-				densityCost = 4.00;
+				densityCost = 10.35;
 			}
-			return (Weight/volume)*densityCost;
+			return Math.Round((volume/Weight)*densityCost,2);
 		}
+
+		public static List<Parcel> GetAll()
+		{
+			return _parcelList;
+		}
+
 	}
 }

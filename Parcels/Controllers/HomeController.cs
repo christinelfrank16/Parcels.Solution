@@ -6,7 +6,7 @@ namespace Parcels.Controllers
     {
 
       [HttpGet("/")]
-      public ActionResult Ship()
+      public ActionResult Index()
       {
         return View();
       }
